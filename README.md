@@ -5,6 +5,7 @@ The repository for implement script for automatic changing the order of the mark
 ## Technology
 
 * Typescript
+* Jest
 
 ## Development
 
