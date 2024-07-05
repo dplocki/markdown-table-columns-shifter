@@ -22,3 +22,11 @@ Run the code in the container:
 ```sh
 docker run -it -v $(pwd):/home/node node bash
 ```
+
+### Run tests
+
+```sh
+npm run test
+```
+
+Can be use with the `-- --watch` parameter.
