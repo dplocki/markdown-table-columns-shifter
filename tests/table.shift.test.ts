@@ -1,4 +1,4 @@
-import { moveMarkdownColumns } from "../src/table.shift";
+import { getColumnSetup, moveMarkdownColumns } from "../src/table.shift";
 
 const randomString = (number, prefix = '') => {
   while (number--) {
@@ -9,6 +9,14 @@ const randomString = (number, prefix = '') => {
 
   return prefix;
 };
+
+describe('getColumnSetup', () => {
+  it('should return empty array for empty text', () => {
+    const result = getColumnSetup('');
+
+    expect(result).toEqual([]);
+  });
+});
 
 describe('moveMarkdownColumns', () => {
   it('should return empty test getting empty text', () => {
