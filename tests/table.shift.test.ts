@@ -1,6 +1,6 @@
 import { getColumnLayout, moveMarkdownColumns } from "../src/table.shift";
 
-const randomString = (number, prefix = '') => {
+function randomString(number:number=12, prefix:string=''): string {
   while (number--) {
     let tmp = Math.random() * 62 | 0;
     tmp += tmp > 9 ? (tmp < 36 ? 55 : 61) : 48;
@@ -12,9 +12,11 @@ const randomString = (number, prefix = '') => {
 
 describe('getColumnLayout', () => {
   it('should return empty array for empty text', () => {
-    const result = getColumnLayout('');
+    expect(getColumnLayout('')).toEqual([]);
+  });
 
-    expect(result).toEqual([]);
+  it('should reutrn empty array if text is not a table', () => {
+    expect(getColumnLayout(randomString())).toEqual([]);
   });
 });
 
@@ -26,7 +28,7 @@ describe('moveMarkdownColumns', () => {
   });
 
   it('should return what get if that is not a markdown table', () => {
-    const table = randomString(10);
+    const table = randomString();
     const result = moveMarkdownColumns([], table);
 
     expect(result).toBe(table);
