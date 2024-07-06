@@ -51,7 +51,6 @@ describe('getColumnLayout', () => {
 
     expect(getColumnLayout(tableContent)).toEqual(expectedLayout);
   });
-
 });
 
 describe('moveMarkdownColumns', () => {

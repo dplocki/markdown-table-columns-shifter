@@ -5,12 +5,9 @@ export function getColumnLayout(tableContent: string) {
     return [];
   }
 
-  const result = firstLine
-    .split('|')
-    .map((_, index) => index)
-    .filter(index => index !== 0);
-
-  result.pop();
+  let result = firstLine.split('|').map((_, index) => index);
+  result.shift(); // the first | character
+  result.pop(); // the last | character
 
   return result;
 }
