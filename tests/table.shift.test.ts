@@ -18,6 +18,10 @@ describe('getColumnLayout', () => {
   it('should reutrn empty array if text is not a table', () => {
     expect(getColumnLayout(randomString())).toEqual([]);
   });
+
+  it('should return single array for single column content', () => {
+    expect(getColumnLayout(`|${randomString()}|`)).toEqual([1]);
+  });
 });
 
 describe('moveMarkdownColumns', () => {
@@ -33,5 +37,4 @@ describe('moveMarkdownColumns', () => {
 
     expect(result).toBe(table);
   });
-
 });
