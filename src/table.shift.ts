@@ -1,3 +1,3 @@
-export function moveMarkdownColumns(arg0: never[], arg1: string) {
-  return '';
+export function moveMarkdownColumns(newColumnSetup: never[], tableContent: string) {
+  return tableContent;
 }

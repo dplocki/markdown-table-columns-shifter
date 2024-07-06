@@ -6,4 +6,12 @@ describe('moveMarkdownColumns', () => {
 
     expect(result).toBe('');
   });
+
+  it('should return what get if that is not a markdown table', () => {
+    const table = 'sddsds';
+    const result = moveMarkdownColumns([], table);
+
+    expect(result).toBe(table);
+  });
+
 });
