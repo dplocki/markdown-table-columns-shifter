@@ -19,8 +19,12 @@ describe('getColumnLayout', () => {
     expect(getColumnLayout(randomString())).toEqual([]);
   });
 
-  it('should return single array for single column content', () => {
+  it('should return correct array for single column content', () => {
     expect(getColumnLayout(`|${randomString()}|`)).toEqual([1]);
+  });
+
+  it('should return correct array for two column content', () => {
+    expect(getColumnLayout(`|${randomString()}|${randomString()}|`)).toEqual([1, 2]);
   });
 });
 
