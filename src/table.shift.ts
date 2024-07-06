@@ -1,9 +1,11 @@
 export function getColumnLayout(tableContent: string) {
-  if (tableContent.indexOf('|') === -1) {
+  const firstLine = tableContent.split('\n')[0];
+
+  if (firstLine.indexOf('|') === -1) {
     return [];
   }
 
-  const result = tableContent
+  const result = firstLine
     .split('|')
     .map((_, index) => index)
     .filter(index => index !== 0);
