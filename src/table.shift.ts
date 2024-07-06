@@ -1,4 +1,4 @@
-export function getColumnSetup(arg0: string) {
+export function getColumnLayout(arg0: string) {
   return [];
 }
 
