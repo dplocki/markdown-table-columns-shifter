@@ -28,6 +28,10 @@ describe('getColumnLayout', () => {
 });
 
 describe('moveMarkdownColumns', () => {
+  it('should throw exception for null as layout', () => {
+    expect(() => moveMarkdownColumns((null as unknown as number[]), randomString())).toThrow(Error);
+  });
+
   it('should return empty test getting empty text', () => {
     expect(moveMarkdownColumns([], '')).toBe('');
   });
