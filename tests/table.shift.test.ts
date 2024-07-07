@@ -38,4 +38,8 @@ describe('moveMarkdownColumns', () => {
 
     expect(result).toBe(table);
   });
+
+  it('should throw an exception if there is excepting column for non-table', () => {
+    expect(() => moveMarkdownColumns([1], randomString())).toThrow(Error);
+  });
 });

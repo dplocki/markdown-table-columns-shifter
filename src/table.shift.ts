@@ -12,6 +12,13 @@ export function getColumnLayout(tableContent: string) {
   return result;
 }
 
-export function moveMarkdownColumns(newColumnSetup: never[], tableContent: string) {
+export function moveMarkdownColumns(newColumnSetup: number[], tableContent: string) {
+  const firstLine = tableContent.split('\n')[0];
+  const columnHeaders = firstLine.split('|');
+
+  if (newColumnSetup.length > 0 && columnHeaders.length > 0) {
+    throw Error('too many columns');
+  }
+
   return tableContent;
 }
