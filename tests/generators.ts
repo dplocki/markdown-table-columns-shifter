@@ -12,13 +12,18 @@ export function randomString(number: number = 12, prefix: string = ''): string {
   return prefix;
 };
 
-export function tableBuilder(columnsNumber: number = 3, rowNumber: number = 10) {
-  return Array.from(Array(rowNumber).keys()).map(_ => {
-    return '|' + Array
-      .from(Array(columnsNumber).keys())
-      .map(_ => randomString())
-      .join('|') + '|'
-  }).join('\n') + '\n';
+export function runTimes<T>(n: number, builder: (value: any) => T): Array<T> {
+  return Array.from(Array(n).keys()).map<T>(builder);
+}
+
+export function generateColumns(columnsNumber: number, rowNumber: number) {
+  return runTimes(columnsNumber, () => runTimes(rowNumber, () => randomString(randomNumber())));
+}
+
+export function tableBuilder(columnsSet: Array<Array<T>>): string {
+  return columnsSet[0]
+    .map((_, colIndex) => '|' + columnsSet.map(row => row[colIndex]).join('|') + '|')
+    .join('\n');
 }
 
 export function buildBaseColumnLayout(columnsNumber: number): Array<number> {
