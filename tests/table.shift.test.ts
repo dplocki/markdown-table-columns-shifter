@@ -46,4 +46,14 @@ describe('moveMarkdownColumns', () => {
   it('should throw an exception if there is excepting column for non-table', () => {
     expect(() => moveMarkdownColumns([1], randomString())).toThrow(Error);
   });
+
+  it('should swap two columns in two column table', () => {
+    const columnSet = generateColumnsSet(2, randomNumber(3));
+    const expectedTable = tableBuilder([columnSet[1], columnSet[0]]);
+    const inputTable = tableBuilder(columnSet);
+
+    const result = moveMarkdownColumns([2, 1], inputTable);
+
+    expect(result).toBe(expectedTable);
+  });
 });

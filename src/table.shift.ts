@@ -13,12 +13,21 @@ export function getColumnLayout(tableContent: string) {
 }
 
 export function moveMarkdownColumns(newColumnSetup: number[], tableContent: string) {
-  const firstLine = tableContent.split('\n')[0];
-  const columnHeaders = firstLine.split('|');
+  const lines = tableContent.split('\n');
+  const columnHeaders = lines[0].split('|');
 
   if (!newColumnSetup || (newColumnSetup.length > 0 && columnHeaders.length < 3)) {
     throw Error('too many columns');
   }
 
-  return tableContent;
+  return lines.map(line => {
+    const columns = line.split('|');
+    if (columns.length === 1) {
+      return line;
+    }
+
+    const newColumns = newColumnSetup.map(tokenIndex => columns[tokenIndex]);
+
+    return '|' + newColumns.join('|') + '|';
+  }).join('\n');
 }
