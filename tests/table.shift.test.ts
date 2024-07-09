@@ -1,4 +1,4 @@
-import { buildBaseColumnLayout, randomNumber, randomString, tableBuilder } from "./generators";
+import { buildBaseColumnLayout, generateColumnsSet, randomNumber, randomString, tableBuilder } from "./generators";
 import { getColumnLayout, moveMarkdownColumns } from "../src/table.shift";
 
 describe('getColumnLayout', () => {
@@ -20,7 +20,7 @@ describe('getColumnLayout', () => {
 
   it('should return correct array even for more rows', () => {
     const columnsNumber = randomNumber(3, 7);
-    const tableContent = tableBuilder(columnsNumber, randomNumber(3, 10));
+    const tableContent = tableBuilder(generateColumnsSet(columnsNumber, randomNumber(3, 10)));
     const expectedLayout = buildBaseColumnLayout(columnsNumber);
 
     expect(getColumnLayout(tableContent)).toEqual(expectedLayout);

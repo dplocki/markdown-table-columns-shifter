@@ -16,7 +16,7 @@ export function moveMarkdownColumns(newColumnSetup: number[], tableContent: stri
   const firstLine = tableContent.split('\n')[0];
   const columnHeaders = firstLine.split('|');
 
-  if (!newColumnSetup || (newColumnSetup.length > 0 && columnHeaders.length > 0)) {
+  if (!newColumnSetup || (newColumnSetup.length > 0 && columnHeaders.length < 3)) {
     throw Error('too many columns');
   }
 

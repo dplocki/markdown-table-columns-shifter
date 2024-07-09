@@ -16,13 +16,16 @@ export function runTimes<T>(n: number, builder: (value: any) => T): Array<T> {
   return Array.from(Array(n).keys()).map<T>(builder);
 }
 
-export function generateColumns(columnsNumber: number, rowNumber: number) {
+export function generateColumnsSet(columnsNumber: number, rowNumber: number) {
   return runTimes(columnsNumber, () => runTimes(rowNumber, () => randomString(randomNumber())));
 }
 
-export function tableBuilder(columnsSet: Array<Array<T>>): string {
-  return columnsSet[0]
-    .map((_, colIndex) => '|' + columnsSet.map(row => row[colIndex]).join('|') + '|')
+export function tableBuilder(columnsSet: Array<Array<string>>): string {
+  const transposed = columnsSet[0].map((_, colIndex) => columnsSet.map(row => row[colIndex]));
+
+  return transposed.map((line) => {
+      return '|' + line.join('|') + '|';
+    })
     .join('\n');
 }
 
