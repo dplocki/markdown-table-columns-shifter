@@ -56,4 +56,14 @@ describe('moveMarkdownColumns', () => {
 
     expect(result).toBe(expectedTable);
   });
+
+  it('should swap all columns in three column table', () => {
+    const columnSet = generateColumnsSet(3, randomNumber(3));
+    const expectedTable = tableBuilder([columnSet[1], columnSet[2], columnSet[0]]);
+    const inputTable = tableBuilder(columnSet);
+
+    const result = moveMarkdownColumns([2, 3, 1], inputTable);
+
+    expect(result).toBe(expectedTable);
+  });
 });
