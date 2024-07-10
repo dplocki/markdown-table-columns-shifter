@@ -1,4 +1,4 @@
-import { buildBaseColumnLayout, generateColumnsSet, randomNumber, randomString, tableBuilder } from "./generators";
+import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, randomNumber, randomString, tableBuilder } from "./generators";
 import { getColumnLayout, moveMarkdownColumns } from "../src/table.shift";
 
 describe('getColumnLayout', () => {
@@ -63,6 +63,18 @@ describe('moveMarkdownColumns', () => {
     const inputTable = tableBuilder(columnSet);
 
     const result = moveMarkdownColumns([2, 3, 1], inputTable);
+
+    expect(result).toBe(expectedTable);
+  });
+
+  it('should work corretly for many randomize columns', () => {
+    const columnsNumber = randomNumber(4, 8);
+    const columnsLayout = generateColumnsLayout(columnsNumber);
+    const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
+    const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
+    const inputTable = tableBuilder(columnSet);
+
+    const result = moveMarkdownColumns(columnsLayout, inputTable);
 
     expect(result).toBe(expectedTable);
   });

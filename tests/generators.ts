@@ -24,11 +24,23 @@ export function tableBuilder(columnsSet: Array<Array<string>>): string {
   const transposed = columnsSet[0].map((_, colIndex) => columnsSet.map(row => row[colIndex]));
 
   return transposed.map((line) => {
-      return '|' + line.join('|') + '|';
-    })
+    return '|' + line.join('|') + '|';
+  })
     .join('\n');
 }
 
 export function buildBaseColumnLayout(columnsNumber: number): Array<number> {
   return Array.from(Array(columnsNumber).keys()).map((columnIndex: number) => columnIndex + 1);
+}
+
+export function generateColumnsLayout(n: number): Array<number> {
+  const layout = Array.from(Array(n).keys())
+    .map((i: number) => i + 1);
+
+  for (let i = layout.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [layout[i], layout[j]] = [layout[j], layout[i]];
+  }
+
+  return layout;
 }
