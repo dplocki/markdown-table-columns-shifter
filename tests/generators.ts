@@ -20,11 +20,11 @@ export function generateColumnsSet(columnsNumber: number, rowNumber: number) {
   return runTimes(columnsNumber, () => runTimes(rowNumber, () => randomString(randomNumber())));
 }
 
-export function tableBuilder(columnsSet: Array<Array<string>>): string {
+export function tableBuilder(columnsSet: Array<Array<string>>, linePrefix: string = ''): string {
   const transposed = columnsSet[0].map((_, colIndex) => columnsSet.map(row => row[colIndex]));
 
   return transposed.map((line) => {
-    return '|' + line.join('|') + '|';
+    return `${linePrefix}|` + line.join('|') + '|';
   })
     .join('\n');
 }
