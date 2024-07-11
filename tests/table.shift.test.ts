@@ -98,4 +98,17 @@ describe('moveMarkdownColumns', () => {
 
     expect(result).toBe(expectedTable);
   });
+
+  it('should remove indent', () => {
+    const columnsNumber = randomNumber(4, 8);
+    const columnsLayout = generateColumnsLayout(columnsNumber);
+    const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
+    const linePrefix = ' '.repeat(randomNumber(3, 9));
+    const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
+    const inputTable = tableBuilder(columnSet, linePrefix);
+
+    const result = moveMarkdownColumns(columnsLayout, inputTable);
+
+    expect(result).toBe(expectedTable);
+  });
 });

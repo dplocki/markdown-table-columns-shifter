@@ -34,6 +34,11 @@ export function moveMarkdownColumns(newColumnSetup: number[], tableContent: stri
       .filter(Boolean)
       .map(tokenIndex => columns[tokenIndex]);
 
-    return columns[0] + '|' + newColumns.join('|') + '|';
+    const result = '|' + newColumns.join('|') + '|';
+    if (newColumnSetup[0] !== 0) {
+      return result;
+    }
+
+    return columns[0] + result;
   }).join('\n');
 }
