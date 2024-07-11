@@ -85,4 +85,17 @@ describe('moveMarkdownColumns', () => {
 
     expect(result).toBe(expectedTable);
   });
+
+  it('should kept indent', () => {
+    const columnsNumber = randomNumber(4, 8);
+    const columnsLayout = generateColumnsLayout(columnsNumber);
+    const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
+    const linePrefix = ' '.repeat(randomNumber(3, 9));
+    const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]), linePrefix);
+    const inputTable = tableBuilder(columnSet, linePrefix);
+
+    const result = moveMarkdownColumns([0].concat(columnsLayout), inputTable);
+
+    expect(result).toBe(expectedTable);
+  });
 });

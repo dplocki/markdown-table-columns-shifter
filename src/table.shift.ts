@@ -30,8 +30,10 @@ export function moveMarkdownColumns(newColumnSetup: number[], tableContent: stri
       return line;
     }
 
-    const newColumns = newColumnSetup.map(tokenIndex => columns[tokenIndex]);
+    const newColumns = newColumnSetup
+      .filter(Boolean)
+      .map(tokenIndex => columns[tokenIndex]);
 
-    return '|' + newColumns.join('|') + '|';
+    return columns[0] + '|' + newColumns.join('|') + '|';
   }).join('\n');
 }
