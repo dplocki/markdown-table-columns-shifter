@@ -36,6 +36,13 @@ describe('moveMarkdownColumns', () => {
     expect(moveMarkdownColumns([], '')).toBe('');
   });
 
+  it('should throw error if 0 column is not in first place', () => {
+    const columnSet = generateColumnsSet(3, randomNumber(3));
+    const inputTable = tableBuilder(columnSet, ''.repeat(randomNumber(2, 4)));
+
+    expect(() => moveMarkdownColumns([1, 2, 0], inputTable)).toThrow(Error);
+  });
+
   it('should return what get if that is not a markdown table', () => {
     const table = randomString();
     const result = moveMarkdownColumns([], table);

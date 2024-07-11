@@ -20,6 +20,10 @@ export function moveMarkdownColumns(newColumnSetup: number[], tableContent: stri
     throw Error('too many columns');
   }
 
+  if (newColumnSetup.indexOf(0) > 0) {
+    throw Error('newColumnSetup is no prefix before table is not  should ');
+  }
+
   return lines.map(line => {
     const columns = line.split('|');
     if (columns.length === 1) {
