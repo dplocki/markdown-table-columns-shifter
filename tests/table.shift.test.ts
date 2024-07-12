@@ -1,4 +1,4 @@
-import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, randomNumber, randomString, shuffle, tableBuilder } from "./generators";
+import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, randomNumber, randomString, runTimes, shuffle, tableBuilder } from "./generators";
 import { getColumnLayout, moveMarkdownColumns } from "../src/table.shift";
 
 describe('getColumnLayout', () => {
@@ -117,9 +117,7 @@ describe('moveMarkdownColumns', () => {
     const columnsLayout = generateColumnsLayout(columnsNumber);
 
     shuffle(columnsLayout);
-    columnsLayout.pop()
-    columnsLayout.pop()
-    columnsLayout.pop()
+    runTimes(randomNumber(2, 3), () => columnsLayout.pop());
 
     const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
     const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
@@ -127,6 +125,7 @@ describe('moveMarkdownColumns', () => {
 
     const result = moveMarkdownColumns(columnsLayout, inputTable);
 
+    expect(columnsNumber).not.toBe(columnsLayout.length);
     expect(result).toBe(expectedTable);
   });
 });
