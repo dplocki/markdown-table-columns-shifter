@@ -1,4 +1,4 @@
-import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, randomNumber, randomString, tableBuilder } from "./generators";
+import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, randomNumber, randomString, shuffle, tableBuilder } from "./generators";
 import { getColumnLayout, moveMarkdownColumns } from "../src/table.shift";
 
 describe('getColumnLayout', () => {
@@ -86,7 +86,7 @@ describe('moveMarkdownColumns', () => {
     expect(result).toBe(expectedTable);
   });
 
-  it('should kept indent', () => {
+  it('should kept indent column', () => {
     const columnsNumber = randomNumber(4, 8);
     const columnsLayout = generateColumnsLayout(columnsNumber);
     const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
@@ -99,13 +99,31 @@ describe('moveMarkdownColumns', () => {
     expect(result).toBe(expectedTable);
   });
 
-  it('should remove indent', () => {
+  it('should remove indent column', () => {
     const columnsNumber = randomNumber(4, 8);
     const columnsLayout = generateColumnsLayout(columnsNumber);
     const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
     const linePrefix = ' '.repeat(randomNumber(3, 9));
     const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
     const inputTable = tableBuilder(columnSet, linePrefix);
+
+    const result = moveMarkdownColumns(columnsLayout, inputTable);
+
+    expect(result).toBe(expectedTable);
+  });
+
+  it('should remove indent column', () => {
+    const columnsNumber = randomNumber(4, 8);
+    const columnsLayout = generateColumnsLayout(columnsNumber);
+
+    shuffle(columnsLayout);
+    columnsLayout.pop()
+    columnsLayout.pop()
+    columnsLayout.pop()
+
+    const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
+    const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
+    const inputTable = tableBuilder(columnSet);
 
     const result = moveMarkdownColumns(columnsLayout, inputTable);
 
