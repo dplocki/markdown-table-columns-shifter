@@ -1,4 +1,8 @@
 {
+  "name": "markdown-table-columns-shifter",
+  "version": "1.0.0",
+  "description": "The library to changing the order and remove of the markdown-style columns",
+  "license": "GPL-3.0-only",
   "scripts": {
     "test": "jest --coverage"
   },
