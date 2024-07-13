@@ -28,19 +28,24 @@ describe('getColumnLayout', () => {
 });
 
 describe('moveMarkdownColumns', () => {
-  it('should throw exception for null as layout', () => {
-    expect(() => moveMarkdownColumns((null as unknown as number[]), randomString())).toThrow(Error);
+  describe('during validation', () => {
+    it('should throw exception for null as layout', () => {
+      expect(() => moveMarkdownColumns((null as unknown as number[]), randomString())).toThrow(Error);
+    });
+
+    it('should throw error if 0 column is not in first place', () => {
+      const columnSet = generateColumnsSet(3, randomNumber(3));
+      const inputTable = tableBuilder(columnSet, ''.repeat(randomNumber(2, 4)));
+
+      expect(() => moveMarkdownColumns([1, 2, 0], inputTable)).toThrow(Error);
+    });
+    it('should throw an exception if there is excepting column for non-table', () => {
+      expect(() => moveMarkdownColumns([1], randomString())).toThrow(Error);
+    });
   });
 
   it('should return empty test getting empty text', () => {
     expect(moveMarkdownColumns([], '')).toBe('');
-  });
-
-  it('should throw error if 0 column is not in first place', () => {
-    const columnSet = generateColumnsSet(3, randomNumber(3));
-    const inputTable = tableBuilder(columnSet, ''.repeat(randomNumber(2, 4)));
-
-    expect(() => moveMarkdownColumns([1, 2, 0], inputTable)).toThrow(Error);
   });
 
   it('should return what get if that is not a markdown table', () => {
@@ -48,10 +53,6 @@ describe('moveMarkdownColumns', () => {
     const result = moveMarkdownColumns([], table);
 
     expect(result).toBe(table);
-  });
-
-  it('should throw an exception if there is excepting column for non-table', () => {
-    expect(() => moveMarkdownColumns([1], randomString())).toThrow(Error);
   });
 
   it('should swap two columns in two column table', () => {
