@@ -39,8 +39,18 @@ describe('moveMarkdownColumns', () => {
 
       expect(() => moveMarkdownColumns([1, 2, 0], inputTable)).toThrow(Error);
     });
+
     it('should throw an exception if there is excepting column for non-table', () => {
       expect(() => moveMarkdownColumns([1], randomString())).toThrow(Error);
+    });
+
+    it('should not throw an exception if there is more column than layout express', () => {
+      const columnsNumber = randomNumber(4, 8);
+      const columnsLayout = generateColumnsLayout(columnsNumber + 1);
+      const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
+      const inputTable = tableBuilder(columnSet);
+
+      expect(() => moveMarkdownColumns(columnsLayout, inputTable)).not.toThrow(Error);
     });
   });
 
