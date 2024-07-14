@@ -1,5 +1,5 @@
 import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, randomNumber, randomString, runTimes, shuffle, tableBuilder } from "./generators";
-import { getColumnLayout, moveMarkdownColumns } from "../src/table.shift";
+import { getColumnLayout, moveMarkdownColumns } from "../src";
 
 describe('getColumnLayout', () => {
   it('should return empty array for empty text', () => {
