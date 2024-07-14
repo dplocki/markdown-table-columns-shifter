@@ -6,7 +6,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "prepare": "npx tsc"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
