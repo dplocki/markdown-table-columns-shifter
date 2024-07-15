@@ -4,7 +4,7 @@
   "description": "The library to changing the order and remove of the markdown-style columns",
   "license": "GPL-3.0-only",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest --coverage",
     "prepare": "npx tsc"
