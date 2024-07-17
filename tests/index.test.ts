@@ -6,7 +6,7 @@ describe('getColumnLayout', () => {
     expect(getColumnLayout('')).toEqual([]);
   });
 
-  it('should reutrn empty array if text is not a table', () => {
+  it('should return empty array if text is not a table', () => {
     expect(getColumnLayout(randomString())).toEqual([]);
   });
 
@@ -85,7 +85,7 @@ describe('moveMarkdownColumns', () => {
     expect(result).toBe(expectedTable);
   });
 
-  it('should work corretly for many randomize columns', () => {
+  it('should work correctly for many randomize columns', () => {
     const columnsNumber = randomNumber(4, 8);
     const columnsLayout = generateColumnsLayout(columnsNumber);
     const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
