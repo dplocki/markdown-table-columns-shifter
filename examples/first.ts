@@ -8,10 +8,6 @@ const originalTable = `| Country       | Capital City | Population (millions) | 
 | Australia     | Canberra     | 25                    | 7,692,024    |
 | Brazil        | Brasília     | 213                   | 8,515,767    |`
 
-
-
-
-
 console.log('Oryginal table:');
 console.log(originalTable);
 
