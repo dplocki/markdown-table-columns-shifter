@@ -22,3 +22,7 @@ console.log(moveMarkdownColumns([1, 2, 4], originalTable));
 console.log()
 console.log('Remove columns:')
 console.log(moveMarkdownColumns([1], originalTable));
+
+console.log()
+console.log('Column duplication:')
+console.log(moveMarkdownColumns([1, 2, 2, 3, 4], originalTable));
