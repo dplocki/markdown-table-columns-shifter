@@ -11,5 +11,14 @@ const originalTable = `| Country       | Capital City | Population (millions) | 
 console.log('Oryginal table:');
 console.log(originalTable);
 
+console.log()
 console.log('Swap columns:');
 console.log(moveMarkdownColumns([1, 3, 4, 2], originalTable));
+
+console.log()
+console.log('Remove column:')
+console.log(moveMarkdownColumns([1, 2, 4], originalTable));
+
+console.log()
+console.log('Remove columns:')
+console.log(moveMarkdownColumns([1], originalTable));
