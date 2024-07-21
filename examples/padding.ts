@@ -15,3 +15,6 @@ console.log()
 console.log('Remove column:')
 console.log(moveMarkdownColumns([0, 1], originalTable));
 
+console.log()
+console.log('Remove padding:')
+console.log(moveMarkdownColumns([1, 2, 3], originalTable));
