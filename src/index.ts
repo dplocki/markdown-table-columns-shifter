@@ -26,12 +26,14 @@ export function moveMarkdownColumns(newColumnSetup: number[], tableContent: stri
 
   return lines.map(line => {
     const columns = line.split('|');
-    if (columns.length === 1) {
+    const columnsIndex = columns.length;
+    if (columnsIndex === 1) {
       return line;
     }
 
     const newColumns = newColumnSetup
       .filter(Boolean)
+      .filter(index => columnsIndex > index + 1)
       .map(tokenIndex => columns[tokenIndex]);
 
     const result = '|' + newColumns.join('|') + '|';

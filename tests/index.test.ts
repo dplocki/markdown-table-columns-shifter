@@ -139,4 +139,16 @@ describe('moveMarkdownColumns', () => {
     expect(columnsNumber).not.toBe(columnsLayout.length);
     expect(result).toBe(expectedTable);
   });
+
+  it('should not return empty when in layout there are extra columns', () => {
+    const columnsNumber = randomNumber(4, 8);
+    const columnsLayout = generateColumnsLayout(columnsNumber + randomNumber(2, 4));
+    const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
+    const expectedTable = tableBuilder(columnsLayout.filter((column) => column <= columnSet.length).map((columnIndex) => columnSet[columnIndex - 1]));
+    const inputTable = tableBuilder(columnSet);
+
+    const result = moveMarkdownColumns(columnsLayout, inputTable);
+
+    expect(result).toBe(expectedTable);
+  });
 });
