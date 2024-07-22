@@ -16,8 +16,8 @@ export function runTimes<T>(n: number, builder: (value: any) => T): Array<T> {
   return Array.from(Array(n).keys()).map<T>(builder);
 }
 
-export function generateColumnsSet(columnsNumber: number, rowNumber: number) {
-  return runTimes(columnsNumber, () => runTimes(rowNumber, () => randomString(randomNumber())));
+export function generateColumnsSet(columnsNumber: number, rowNumber: number, generator: ((number) => string) = randomString) {
+  return runTimes(columnsNumber, () => runTimes(rowNumber, () => generator(randomNumber())));
 }
 
 export function tableBuilder(columnsSet: Array<Array<string>>, linePrefix: string = ''): string {
