@@ -1,4 +1,4 @@
-import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, randomNumber, randomString, runTimes, shuffle, tableBuilder } from "./generators";
+import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, generateColumnsSetGenerator, randomNumber, randomString, runTimes, shuffle, tableBuilder } from "./generators";
 import { getColumnLayout, moveMarkdownColumns } from "../src";
 
 describe('getColumnLayout', () => {
@@ -52,6 +52,22 @@ describe('moveMarkdownColumns', () => {
 
       expect(() => moveMarkdownColumns(columnsLayout, inputTable)).not.toThrow(Error);
     });
+  });
+
+  it('should ignore \\| from the input', () => {
+    const columnsNumber = randomNumber(4, 8);
+    const columnsLayout = generateColumnsLayout(columnsNumber);
+    const columnSet = generateColumnsSetGenerator(
+      columnsNumber,
+      randomNumber(3),
+      () => (randomString(randomNumber(0, 3)) + '\\|' + randomString(randomNumber(0, 3)))
+    );
+    const inputTable = tableBuilder(columnSet);
+    const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
+
+    const result = moveMarkdownColumns(columnsLayout, inputTable);
+
+    expect(result).toBe(expectedTable);
   });
 
   it('should return empty test getting empty text', () => {

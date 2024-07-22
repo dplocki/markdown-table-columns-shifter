@@ -1,3 +1,5 @@
+const splitterRegex = /(?<!\\)\|/;
+
 export function getColumnLayout(tableContent: string) {
   const firstLine = tableContent.split('\n')[0];
 
@@ -14,7 +16,7 @@ export function getColumnLayout(tableContent: string) {
 
 export function moveMarkdownColumns(newColumnSetup: number[], tableContent: string) {
   const lines = tableContent.split('\n');
-  const columnHeaders = lines[0].split('|');
+  const columnHeaders = lines[0].split(splitterRegex);
 
   if (!newColumnSetup || (newColumnSetup.length > 0 && columnHeaders.length < 3)) {
     throw Error('too many columns');
@@ -25,7 +27,7 @@ export function moveMarkdownColumns(newColumnSetup: number[], tableContent: stri
   }
 
   return lines.map(line => {
-    const columns = line.split('|');
+    const columns = line.split(splitterRegex);
     const columnsIndex = columns.length;
     if (columnsIndex === 1) {
       return line;
