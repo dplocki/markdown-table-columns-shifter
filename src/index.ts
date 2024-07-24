@@ -7,7 +7,7 @@ export function getColumnLayout(tableContent: string) {
     return [];
   }
 
-  let result = firstLine.split('|').map((_, index) => index);
+  const result = firstLine.split('|').map((_, index) => index);
   result.shift(); // the first | character
   result.pop(); // the last | character
 
