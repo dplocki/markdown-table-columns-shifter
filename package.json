@@ -1,6 +1,6 @@
 {
   "name": "markdown-table-columns-shifter",
-  "author": "Dawid Płocki",
+  "author": "Dawid Płocki <dplocki@tutanota.com>",
   "description": "The library to changing the order and remove of the markdown-style columns",
   "license": "GPL-3.0-only",
   "version": "1.0.0",
