@@ -34,3 +34,13 @@ Run the code in the container:
 ```sh
 docker run -it -v $(pwd):/home/node node bash
 ```
+
+## Checking the package content
+
+The command:
+
+```sh
+npm pack
+```
+
+Will create the `tgz` archive, which could be published.
