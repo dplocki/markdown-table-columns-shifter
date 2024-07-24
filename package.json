@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest --coverage",
-    "prepare": "npx tsc"
+    "prepare": "tsc"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
