@@ -1,13 +1,14 @@
+const columnSplitter = '|';
 const splitterRegex = /(?<!\\)\|/;
 
 export function getColumnLayout(tableContent: string) {
   const firstLine = tableContent.split('\n')[0];
 
-  if (firstLine.indexOf('|') === -1) {
+  if (firstLine.indexOf(columnSplitter) === -1) {
     return [];
   }
 
-  const result = firstLine.split('|').map((_, index) => index);
+  const result = firstLine.split(columnSplitter).map((_, index) => index);
   result.shift(); // the first | character
   result.pop(); // the last | character
 
@@ -30,7 +31,7 @@ export function moveMarkdownColumns(newColumnSetup: number[], tableContent: stri
   return rowsCells.map(cells => {
     const columnsIndex = cells.length;
     if (columnsIndex === 1) {
-      return cells.join('|');
+      return cells.join(columnSplitter);
     }
 
     const newColumns = newColumnSetup
@@ -38,7 +39,7 @@ export function moveMarkdownColumns(newColumnSetup: number[], tableContent: stri
       .filter(index => columnsIndex > index + 1)
       .map(tokenIndex => cells[tokenIndex]);
 
-    const result = '|' + newColumns.join('|') + '|';
+    const result = columnSplitter + newColumns.join(columnSplitter) + columnSplitter;
     if (newColumnSetup[0] !== 0) {
       return result;
     }
