@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Function for manipulate columns in the table
-- Function returning the current layout of the table
 
 ### Changed
 

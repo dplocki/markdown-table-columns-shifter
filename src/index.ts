@@ -1,20 +1,6 @@
 const columnSplitter = '|';
 const splitterRegex = /(?<!\\)\|/;
 
-export function getColumnLayout(tableContent: string) {
-  const firstLine = tableContent.split('\n')[0];
-
-  if (firstLine.indexOf(columnSplitter) === -1) {
-    return [];
-  }
-
-  const result = firstLine.split(columnSplitter).map((_, index) => index);
-  result.shift(); // the first | character
-  result.pop(); // the last | character
-
-  return result;
-}
-
 export function moveMarkdownColumns(newColumnSetup: number[], tableContent: string) {
   const rows = tableContent.split('\n');
   const rowsCells = rows.map(line => line.split(splitterRegex));

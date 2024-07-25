@@ -33,10 +33,6 @@ export function tableBuilder(columnsSet: Array<Array<string>>, linePrefix: strin
     .join('\n');
 }
 
-export function buildBaseColumnLayout(columnsNumber: number): Array<number> {
-  return Array.from(Array(columnsNumber).keys()).map((columnIndex: number) => columnIndex + 1);
-}
-
 export function generateColumnsLayout(n: number): Array<number> {
   const layout = Array.from(Array(n).keys())
     .map((i: number) => i + 1);

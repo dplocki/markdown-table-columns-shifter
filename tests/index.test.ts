@@ -1,31 +1,5 @@
-import { buildBaseColumnLayout, generateColumnsLayout, generateColumnsSet, generateColumnsSetGenerator, randomNumber, randomString, runTimes, shuffle, tableBuilder } from "./generators";
-import { getColumnLayout, moveMarkdownColumns } from "../src";
-
-describe('getColumnLayout', () => {
-  it('should return empty array for empty text', () => {
-    expect(getColumnLayout('')).toEqual([]);
-  });
-
-  it('should return empty array if text is not a table', () => {
-    expect(getColumnLayout(randomString())).toEqual([]);
-  });
-
-  it('should return correct array for single column content', () => {
-    expect(getColumnLayout(`|${randomString()}|`)).toEqual([1]);
-  });
-
-  it('should return correct array for two column content', () => {
-    expect(getColumnLayout(`|${randomString()}|${randomString()}|`)).toEqual([1, 2]);
-  });
-
-  it('should return correct array even for more rows', () => {
-    const columnsNumber = randomNumber(3, 7);
-    const tableContent = tableBuilder(generateColumnsSet(columnsNumber, randomNumber(3, 10)));
-    const expectedLayout = buildBaseColumnLayout(columnsNumber);
-
-    expect(getColumnLayout(tableContent)).toEqual(expectedLayout);
-  });
-});
+import { generateColumnsLayout, generateColumnsSet, generateColumnsSetGenerator, randomNumber, randomString, runTimes, shuffle, tableBuilder } from "./generators";
+import { moveMarkdownColumns } from "../src";
 
 describe('moveMarkdownColumns', () => {
   describe('during validation', () => {
