@@ -9,7 +9,7 @@ describe('moveMarkdownColumns', () => {
 
     it('should throw error if 0 column is not in first place', () => {
       const columnSet = generateColumnsSet(3, randomNumber(3));
-      const inputTable = tableBuilder(columnSet, ''.repeat(randomNumber(2, 4)));
+      const inputTable = tableBuilder(columnSet, { tableIndent: ''.repeat(randomNumber(2, 4)) });
 
       expect(() => moveMarkdownColumns([1, 2, 0], inputTable)).toThrow(Error);
     });
@@ -91,9 +91,9 @@ describe('moveMarkdownColumns', () => {
     const columnsNumber = randomNumber(4, 8);
     const columnsLayout = generateColumnsLayout(columnsNumber);
     const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
-    const linePrefix = ' '.repeat(randomNumber(3, 9));
-    const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]), linePrefix);
-    const inputTable = tableBuilder(columnSet, linePrefix);
+    const tableIndent = ' '.repeat(randomNumber(3, 9));
+    const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]), { tableIndent });
+    const inputTable = tableBuilder(columnSet, { tableIndent });
 
     const result = moveMarkdownColumns([0].concat(columnsLayout), inputTable);
 
@@ -104,9 +104,9 @@ describe('moveMarkdownColumns', () => {
     const columnsNumber = randomNumber(4, 8);
     const columnsLayout = generateColumnsLayout(columnsNumber);
     const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
-    const linePrefix = ' '.repeat(randomNumber(3, 9));
+    const tableIndent = ' '.repeat(randomNumber(3, 9));
     const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
-    const inputTable = tableBuilder(columnSet, linePrefix);
+    const inputTable = tableBuilder(columnSet, { tableIndent });
 
     const result = moveMarkdownColumns(columnsLayout, inputTable);
 
@@ -146,14 +146,14 @@ describe('moveMarkdownColumns', () => {
     '\n ',
     '\r\n',
     '\r'
-  ].forEach((endline: string) => {
-    const label = Array.from(endline).map((c: string) => String(c.charCodeAt(0))).join(',');
+  ].forEach((endLineCharacter: string) => {
+    const label = Array.from(endLineCharacter).map((c: string) => String(c.charCodeAt(0))).join(',');
 
     it(`should work correctly for the [${label}] endline`, () => {
       const columnsNumber = randomNumber(4, 8);
       const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
       const columnsLayout = generateColumnsLayout(columnsNumber);
-      const inputTable = tableBuilder(columnSet, '', endline);
+      const inputTable = tableBuilder(columnSet, { endLineCharacter });
       const expectedTable = tableBuilder(columnsLayout.filter((column) => column <= columnSet.length).map((columnIndex) => columnSet[columnIndex - 1]));
 
       const result = moveMarkdownColumns(columnsLayout, inputTable);

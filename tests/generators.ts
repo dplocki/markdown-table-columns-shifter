@@ -24,12 +24,22 @@ export function generateColumnsSet(columnsNumber: number, rowNumber: number) {
   return generateColumnsSetGenerator(columnsNumber, rowNumber, () => randomString(randomNumber()));
 }
 
-export function tableBuilder(columnsSet: Array<Array<string>>, linePrefix: string = '', endLine: string = '\n'): string {
+interface ITableBuilderOptions {
+  tableIndent?: string;
+  endLineCharacter?: string;
+}
+
+export function tableBuilder(columnsSet: Array<Array<string>>, parameters: ITableBuilderOptions = {}): string {
+  const {
+    tableIndent = '',
+    endLineCharacter = '\n',
+  } = parameters;
+
   const transposed = columnsSet[0].map((_, colIndex) => columnsSet.map(row => row[colIndex]));
 
   return transposed
-    .map((line) => `${linePrefix}|` + line.join('|') + '|')
-    .join(endLine);
+    .map((line) => `${tableIndent}|` + line.join('|') + '|')
+    .join(endLineCharacter);
 }
 
 export function generateColumnsLayout(n: number): Array<number> {
