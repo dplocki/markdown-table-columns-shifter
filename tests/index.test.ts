@@ -141,4 +141,25 @@ describe('moveMarkdownColumns', () => {
 
     expect(result).toBe(expectedTable);
   });
+
+  [
+    '\n ',
+    '\r\n',
+    '\r'
+  ].forEach((endline: string) => {
+    const label = Array.from(endline).map((c: string) => String(c.charCodeAt(0))).join(',');
+
+    it(`should work correctly for the [${label}] endline`, () => {
+      const columnsNumber = randomNumber(4, 8);
+      const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
+      const columnsLayout = generateColumnsLayout(columnsNumber);
+      const inputTable = tableBuilder(columnSet, '', endline);
+      const expectedTable = tableBuilder(columnsLayout.filter((column) => column <= columnSet.length).map((columnIndex) => columnSet[columnIndex - 1]));
+
+      const result = moveMarkdownColumns(columnsLayout, inputTable);
+
+      expect(result).toBe(expectedTable);
+    });
+  });
+
 });
