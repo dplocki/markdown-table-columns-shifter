@@ -30,3 +30,21 @@ console.log(markdownTableColumnsShift([1, 2, 2, 3, 4], originalTable));
 console.log()
 console.log('Extend column do not causing problems:')
 console.log(markdownTableColumnsShift([9, 8, 7, 6, 5, 4, 3, 2, 1], originalTable));
+
+console.log()
+console.log('Place padding column at the begining:')
+try {
+    console.log('Will work, but it, there is not effect:');
+    console.log(markdownTableColumnsShift([0, 1, 2, 4], originalTable));
+} catch (error) {
+    console.log(' ... will not cause error');
+}
+
+console.log()
+console.log('Place padding column in the middle:')
+try {
+    console.log(markdownTableColumnsShift([1, 2, 0, 4], originalTable));
+} catch (error) {
+    console.log(' ... will cause error');
+}
+
