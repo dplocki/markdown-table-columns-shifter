@@ -1,4 +1,4 @@
-import { moveMarkdownColumns } from "markdown-table-columns-shifter";
+import { markdownTableColumnsShift } from "markdown-table-columns-shifter";
 
 const originalTable = `| Country       | Capital City | Population (millions) | Area (km²)   |
 |---------------|--------------|-----------------------|--------------|
@@ -13,20 +13,20 @@ console.log(originalTable);
 
 console.log()
 console.log('Swap columns:');
-console.log(moveMarkdownColumns([1, 3, 4, 2], originalTable));
+console.log(markdownTableColumnsShift([1, 3, 4, 2], originalTable));
 
 console.log()
 console.log('Remove column:')
-console.log(moveMarkdownColumns([1, 2, 4], originalTable));
+console.log(markdownTableColumnsShift([1, 2, 4], originalTable));
 
 console.log()
 console.log('Remove columns:')
-console.log(moveMarkdownColumns([1], originalTable));
+console.log(markdownTableColumnsShift([1], originalTable));
 
 console.log()
 console.log('Column duplication:')
-console.log(moveMarkdownColumns([1, 2, 2, 3, 4], originalTable));
+console.log(markdownTableColumnsShift([1, 2, 2, 3, 4], originalTable));
 
 console.log()
 console.log('Extend column do not causing problems:')
-console.log(moveMarkdownColumns([9, 8, 7, 6, 5, 4, 3, 2, 1], originalTable));
+console.log(markdownTableColumnsShift([9, 8, 7, 6, 5, 4, 3, 2, 1], originalTable));

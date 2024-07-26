@@ -2,7 +2,7 @@ const columnSplitter = '|';
 const splitterRegex = /(?<!\\)\|/;
 const lineSplitterRegex = /\r?\n|\r|\n/;
 
-export function moveMarkdownColumns(newColumnSetup: number[], tableContent: string) {
+export function markdownTableColumnsShift(newColumnSetup: number[], tableContent: string) {
   const rows = tableContent.split(lineSplitterRegex);
   const rowsCells = rows.map(line => line.split(splitterRegex));
   const columnHeaders = rowsCells[0];

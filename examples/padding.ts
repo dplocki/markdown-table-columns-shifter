@@ -1,4 +1,4 @@
-import { moveMarkdownColumns } from "markdown-table-columns-shifter";
+import { markdownTableColumnsShift } from "markdown-table-columns-shifter";
 
 const originalTable = `        | Name    | Age | City       |
         |---------|-----|------------|
@@ -13,8 +13,12 @@ console.log(originalTable);
 
 console.log()
 console.log('Remove column:')
-console.log(moveMarkdownColumns([0, 1], originalTable));
+console.log(markdownTableColumnsShift([0, 1], originalTable));
 
 console.log()
 console.log('Remove padding:')
-console.log(moveMarkdownColumns([1, 2, 3], originalTable));
+console.log(markdownTableColumnsShift([1, 2, 3], originalTable));
+
+console.log()
+console.log('Remove padding:')
+console.log(markdownTableColumnsShift([1, 2, 3], originalTable));

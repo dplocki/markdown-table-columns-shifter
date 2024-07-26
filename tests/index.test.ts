@@ -1,21 +1,21 @@
 import { generateColumnsLayout, generateColumnsSet, generateColumnsSetGenerator, randomNumber, randomString, runTimes, shuffle, tableBuilder } from "./generators";
-import { moveMarkdownColumns } from "../src";
+import { markdownTableColumnsShift } from "../src";
 
-describe('moveMarkdownColumns', () => {
+describe('markdownTableColumnsShift', () => {
   describe('during validation', () => {
     it('should throw exception for null as layout', () => {
-      expect(() => moveMarkdownColumns((null as unknown as number[]), randomString())).toThrow(Error);
+      expect(() => markdownTableColumnsShift((null as unknown as number[]), randomString())).toThrow(Error);
     });
 
     it('should throw error if 0 column is not in first place', () => {
       const columnSet = generateColumnsSet(3, randomNumber(3));
       const inputTable = tableBuilder(columnSet, { tableIndent: ''.repeat(randomNumber(2, 4)) });
 
-      expect(() => moveMarkdownColumns([1, 2, 0], inputTable)).toThrow(Error);
+      expect(() => markdownTableColumnsShift([1, 2, 0], inputTable)).toThrow(Error);
     });
 
     it('should throw an exception if there is excepting column for non-table', () => {
-      expect(() => moveMarkdownColumns([1], randomString())).toThrow(Error);
+      expect(() => markdownTableColumnsShift([1], randomString())).toThrow(Error);
     });
 
     it('should not throw an exception if there is more column than layout express', () => {
@@ -24,7 +24,7 @@ describe('moveMarkdownColumns', () => {
       const columnSet = generateColumnsSet(columnsNumber, randomNumber(3));
       const inputTable = tableBuilder(columnSet);
 
-      expect(() => moveMarkdownColumns(columnsLayout, inputTable)).not.toThrow(Error);
+      expect(() => markdownTableColumnsShift(columnsLayout, inputTable)).not.toThrow(Error);
     });
   });
 
@@ -39,18 +39,18 @@ describe('moveMarkdownColumns', () => {
     const inputTable = tableBuilder(columnSet);
     const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
 
-    const result = moveMarkdownColumns(columnsLayout, inputTable);
+    const result = markdownTableColumnsShift(columnsLayout, inputTable);
 
     expect(result).toBe(expectedTable);
   });
 
   it('should return empty test getting empty text', () => {
-    expect(moveMarkdownColumns([], '')).toBe('');
+    expect(markdownTableColumnsShift([], '')).toBe('');
   });
 
   it('should return what get if that is not a markdown table', () => {
     const table = randomString();
-    const result = moveMarkdownColumns([], table);
+    const result = markdownTableColumnsShift([], table);
 
     expect(result).toBe(table);
   });
@@ -60,7 +60,7 @@ describe('moveMarkdownColumns', () => {
     const expectedTable = tableBuilder([columnSet[1], columnSet[0]]);
     const inputTable = tableBuilder(columnSet);
 
-    const result = moveMarkdownColumns([2, 1], inputTable);
+    const result = markdownTableColumnsShift([2, 1], inputTable);
 
     expect(result).toBe(expectedTable);
   });
@@ -70,7 +70,7 @@ describe('moveMarkdownColumns', () => {
     const expectedTable = tableBuilder([columnSet[1], columnSet[2], columnSet[0]]);
     const inputTable = tableBuilder(columnSet);
 
-    const result = moveMarkdownColumns([2, 3, 1], inputTable);
+    const result = markdownTableColumnsShift([2, 3, 1], inputTable);
 
     expect(result).toBe(expectedTable);
   });
@@ -82,7 +82,7 @@ describe('moveMarkdownColumns', () => {
     const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
     const inputTable = tableBuilder(columnSet);
 
-    const result = moveMarkdownColumns(columnsLayout, inputTable);
+    const result = markdownTableColumnsShift(columnsLayout, inputTable);
 
     expect(result).toBe(expectedTable);
   });
@@ -95,7 +95,7 @@ describe('moveMarkdownColumns', () => {
     const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]), { tableIndent });
     const inputTable = tableBuilder(columnSet, { tableIndent });
 
-    const result = moveMarkdownColumns([0].concat(columnsLayout), inputTable);
+    const result = markdownTableColumnsShift([0].concat(columnsLayout), inputTable);
 
     expect(result).toBe(expectedTable);
   });
@@ -108,7 +108,7 @@ describe('moveMarkdownColumns', () => {
     const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
     const inputTable = tableBuilder(columnSet, { tableIndent });
 
-    const result = moveMarkdownColumns(columnsLayout, inputTable);
+    const result = markdownTableColumnsShift(columnsLayout, inputTable);
 
     expect(result).toBe(expectedTable);
   });
@@ -124,7 +124,7 @@ describe('moveMarkdownColumns', () => {
     const expectedTable = tableBuilder(columnsLayout.map((columnIndex) => columnSet[columnIndex - 1]));
     const inputTable = tableBuilder(columnSet);
 
-    const result = moveMarkdownColumns(columnsLayout, inputTable);
+    const result = markdownTableColumnsShift(columnsLayout, inputTable);
 
     expect(columnsNumber).not.toBe(columnsLayout.length);
     expect(result).toBe(expectedTable);
@@ -137,7 +137,7 @@ describe('moveMarkdownColumns', () => {
     const expectedTable = tableBuilder(columnsLayout.filter((column) => column <= columnSet.length).map((columnIndex) => columnSet[columnIndex - 1]));
     const inputTable = tableBuilder(columnSet);
 
-    const result = moveMarkdownColumns(columnsLayout, inputTable);
+    const result = markdownTableColumnsShift(columnsLayout, inputTable);
 
     expect(result).toBe(expectedTable);
   });
@@ -156,7 +156,7 @@ describe('moveMarkdownColumns', () => {
       const inputTable = tableBuilder(columnSet, { endLineCharacter });
       const expectedTable = tableBuilder(columnsLayout.filter((column) => column <= columnSet.length).map((columnIndex) => columnSet[columnIndex - 1]));
 
-      const result = moveMarkdownColumns(columnsLayout, inputTable);
+      const result = markdownTableColumnsShift(columnsLayout, inputTable);
 
       expect(result).toBe(expectedTable);
     });
