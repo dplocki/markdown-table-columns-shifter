@@ -19,7 +19,7 @@ export function markdownTableColumnsShift(newColumnSetup: number[], tableContent
   }
 
   if (newColumnSetup.indexOf(0) > 0) {
-    throw Error('newColumnSetup is no prefix before table is not should');
+    throw Error('the indent column is can be only at zero index of column layout');
   }
 
   return rowsCells.map(cells => {
