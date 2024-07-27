@@ -32,19 +32,18 @@ console.log('Extend column do not causing problems [9, 8, 7, 6, 5, 4, 3, 2, 1]:'
 console.log(markdownTableColumnsShift([9, 8, 7, 6, 5, 4, 3, 2, 1], originalTable));
 
 console.log()
-console.log('Place padding column at the begining [0, 1, 2, 3, 4]:')
+console.log('Place the indent column at the begining [0, 1, 2, 3, 4]:')
 try {
-    console.log('Will work, but it, there is not effect:');
+    console.log('Will work, but there is no effect:');
     console.log(markdownTableColumnsShift([0, 1, 2, 3, 4], originalTable));
 } catch (error) {
     console.log(' ... will not cause error');
 }
 
 console.log()
-console.log('Place padding column in the middle [1, 2, 0, 4]:')
+console.log('Place the indent column in the middle [1, 2, 0, 4]:')
 try {
     console.log(markdownTableColumnsShift([1, 2, 0, 4], originalTable));
 } catch (error) {
     console.log(' ... will cause error');
 }
-
