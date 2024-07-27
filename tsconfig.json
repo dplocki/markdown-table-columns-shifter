@@ -3,8 +3,7 @@
     "declaration": true,
     "outDir": "dist",
     "target": "es6",
-    "module": "commonjs",
-    "removeComments": true
+    "module": "commonjs"
   },
   "include": [
     "src/**/*.ts"
