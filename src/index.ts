@@ -2,7 +2,14 @@ const columnSplitter = '|';
 const splitterRegex = /(?<!\\)\|/;
 const lineSplitterRegex = /\r?\n|\r|\n/;
 
-export function markdownTableColumnsShift(newColumnSetup: number[], tableContent: string) {
+/**
+ * Re-arranges the columns of a markdown table according to the specified layout.
+ *
+ * @param {number[]} newColumnSetup - An array containing the new order of the columns.
+ * @param {string} tableContent - The markdown table to modify.
+ * @returns {string} The markdown table with rearranged columns.
+ */
+export function markdownTableColumnsShift(newColumnSetup: number[], tableContent: string): string {
   const rows = tableContent.split(lineSplitterRegex);
   const rowsCells = rows.map(line => line.split(splitterRegex));
   const columnHeaders = rowsCells[0];
@@ -12,7 +19,7 @@ export function markdownTableColumnsShift(newColumnSetup: number[], tableContent
   }
 
   if (newColumnSetup.indexOf(0) > 0) {
-    throw Error('newColumnSetup is no prefix before table is not  should ');
+    throw Error('newColumnSetup is no prefix before table is not should');
   }
 
   return rowsCells.map(cells => {
