@@ -18,7 +18,3 @@ console.log(markdownTableColumnsShift([0, 1], originalTable));
 console.log()
 console.log('Remove padding:')
 console.log(markdownTableColumnsShift([1, 2, 3], originalTable));
-
-console.log()
-console.log('Remove padding:')
-console.log(markdownTableColumnsShift([1, 2, 3], originalTable));
