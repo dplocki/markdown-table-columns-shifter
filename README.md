@@ -54,6 +54,12 @@ Works correctly for both filled tables as well as *compressed* ones (no filling 
 
 The `markdownTableColumnsShift` function which accept the layout of the new columns, and the table to convert. It returns the new table as a string value.
 
+Import the function:
+
+```ts
+import { markdownTableColumnsShift } from "markdown-table-columns-shifter";
+```
+
 ### Column Layout
 
 The first parameter for `markdownTableColumnsShift` is an array of numbers representing the intended layout of the columns. Each number represents the index of the original layout (which is: `[0, 1, 2, 3, 4 ...]`).
