@@ -12,6 +12,10 @@
     "markdown",
     "table-manipulation"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dplocki/markdown-table-columns-shifter"
+  },
   "scripts": {
     "test": "jest --coverage",
     "prepare": "tsc"
