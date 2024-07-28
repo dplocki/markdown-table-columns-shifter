@@ -72,7 +72,7 @@ Table body:        | abc  | def | ghi |
                    | bcd  | efg | hij |
 ```
 
-## Example
+## Examples
 
 More examples can be found in the [source code of the package](https://github.com/dplocki/markdown-table-columns-shifter/tree/main/examples).
 
