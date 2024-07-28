@@ -5,6 +5,13 @@
   "license": "GPL-3.0-only",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "keywords": [
+    "gherkin",
+    "markdown-table",
+    "markdown-tools",
+    "markdown",
+    "table-manipulation"
+  ],
   "scripts": {
     "test": "jest --coverage",
     "prepare": "tsc"
