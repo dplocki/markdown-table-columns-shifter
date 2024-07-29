@@ -50,6 +50,8 @@ Works correctly for both filled tables as well as *compressed* ones (no filling 
 |Germany|Berlin|83|357,386|
 ```
 
+Script excepts the one of three kinds of endline: `\n`, `\r`, `\r\n`. But the output is always `\n`.
+
 ## Main Functionality
 
 The `markdownTableColumnsShift` function which accept the layout of the new columns, and the table to convert. It returns the new table as a string value.
